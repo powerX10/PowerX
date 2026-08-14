@@ -43,3 +43,6 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# TypeScript build cache
+*.tsbuildinfo
