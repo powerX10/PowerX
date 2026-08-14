@@ -1,16 +1,45 @@
 .env
-.env.*
-!.env.example
-
+.venv/
 __pycache__/
 *.pyc
 .pytest_cache/
-.venv/
-venv/
-
-node_modules/
-.next/
 dist/
 build/
+node_modules/
 
-.DS_Store
+# PowerX secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+serviceAccount*.json
+firebase-adminsdk*.json
+
+# AI model weights
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+models-data/
+data/uploads/
+
+# Runtime/generated data
+.powerx-runtime/
+.powerx-cpu-runtime/
+/logs/
+*.db
+*.db-shm
+*.db-wal
+
+# Node/Python generated
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.venv/
+venv/

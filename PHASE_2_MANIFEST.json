@@ -1,0 +1,41 @@
+{
+  "phase": 2,
+  "name": "16GB GPU Runtime",
+  "depends_on_phase": 1,
+  "scope": [
+    "GPU runtime lifecycle",
+    "OpenAI-compatible local inference server process management",
+    "GPU memory capability detection",
+    "model start/stop/status",
+    "16GB-class model profiles",
+    "gpt-oss-20b runtime profile",
+    "Qwen 8B runtime profile",
+    "4B vision runtime profile",
+    "health/retry/startup checks"
+  ],
+  "duplicate_policy": "No file path from Phase 1 is included in this ZIP.",
+  "files": [
+    "PHASE_2_MANIFEST.json",
+    "PHASE_2_README.md",
+    "powerx/runtime/__init__.py",
+    "powerx/runtime/gpu/__init__.py",
+    "powerx/runtime/gpu/capabilities.py",
+    "powerx/runtime/gpu/cli.py",
+    "powerx/runtime/gpu/controller.py",
+    "powerx/runtime/gpu/install.sh",
+    "powerx/runtime/gpu/process.py",
+    "powerx/runtime/gpu/profile.py",
+    "powerx/runtime/gpu/profiles/__init__.py",
+    "powerx/runtime/gpu/profiles/gpt_oss_20b.py",
+    "powerx/runtime/gpu/profiles/qwen_8b.py",
+    "powerx/runtime/gpu/profiles/registry.py",
+    "powerx/runtime/gpu/profiles/vision_4b.py",
+    "powerx/runtime/gpu/requirements-gpu.txt",
+    "powerx/runtime/gpu/start_gpt_oss_20b.sh",
+    "powerx/runtime/gpu/start_qwen_8b.sh",
+    "powerx/runtime/gpu/start_vision_4b.sh",
+    "tests_phase2/test_gpu_detector.py",
+    "tests_phase2/test_profiles.py"
+  ],
+  "file_count": 21
+}

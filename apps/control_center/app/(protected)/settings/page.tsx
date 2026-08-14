@@ -1,0 +1,2 @@
+import{PageHead}from"@/components/PageHead";import{AsyncPanel}from"@/components/AsyncPanel";
+export default function Page(){return <><PageHead title="Settings" subtitle="API connectivity and secure configuration status."/><div className="card"><AsyncPanel url="/api/powerx/settings">{d=><pre style={{whiteSpace:"pre-wrap",overflowWrap:"anywhere",margin:0,color:"var(--muted)"}}>{JSON.stringify(d,null,2)}</pre>}</AsyncPanel></div></>}

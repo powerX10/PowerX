@@ -1,0 +1,63 @@
+{
+  "phase": 4,
+  "name": "Production Orchestration + Integration Layer",
+  "depends_on_phases": [
+    1,
+    2,
+    3
+  ],
+  "scope": [
+    "unified runtime selection",
+    "fallback policy",
+    "runtime health registry",
+    "model endpoint resolution",
+    "request validation",
+    "API authentication",
+    "rate limiting",
+    "request IDs",
+    "structured audit logging",
+    "production readiness checks",
+    "Zerion X1 client SDK",
+    "deployment examples",
+    "failure-safe inference coordinator"
+  ],
+  "excluded": [
+    "trading logic",
+    "market indicators",
+    "strategies",
+    "backtesting",
+    "broker execution",
+    "market data feeds"
+  ],
+  "duplicate_policy": "No file path from Phase 1, Phase 2, or Phase 3 is included in this ZIP.",
+  "files": [
+    "PHASE_4_MANIFEST.json",
+    "PHASE_4_README.md",
+    "apps/production_api/__init__.py",
+    "apps/production_api/main.py",
+    "integrations/zerionx1/USAGE.md",
+    "integrations/zerionx1/__init__.py",
+    "integrations/zerionx1/client.py",
+    "ops/docker/Dockerfile.production",
+    "ops/examples/phase4.env.additions",
+    "ops/systemd/powerx-production.service",
+    "powerx/production/__init__.py",
+    "powerx/production/audit.py",
+    "powerx/production/endpoint_config.py",
+    "powerx/production/inference.py",
+    "powerx/production/policy.py",
+    "powerx/production/readiness.py",
+    "powerx/production/request_context.py",
+    "powerx/production/runtime_registry.py",
+    "powerx/production/security.py",
+    "powerx/production/validation.py",
+    "scripts_phase4/generate_api_key.py",
+    "scripts_phase4/list_runtime_config.py",
+    "scripts_phase4/preflight.py",
+    "tests_phase4/test_policy.py",
+    "tests_phase4/test_registry.py",
+    "tests_phase4/test_security.py",
+    "tests_phase4/test_validation.py"
+  ],
+  "file_count": 27
+}

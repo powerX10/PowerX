@@ -1,0 +1,3 @@
+{
+  "firestore": { "rules": "firebase_phase5/firestore.rules" }
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=PowerX Production API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/powerx
+EnvironmentFile=/opt/powerx/.env
+ExecStart=/opt/powerx/.venv/bin/uvicorn apps.production_api.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

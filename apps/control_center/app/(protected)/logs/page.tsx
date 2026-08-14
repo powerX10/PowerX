@@ -1,0 +1,2 @@
+import{PageHead}from"@/components/PageHead";import{AsyncPanel}from"@/components/AsyncPanel";
+export default function Page(){return <><PageHead title="Logs" subtitle="Recent PowerX runtime and audit events."/><div className="card"><AsyncPanel url="/api/powerx/logs">{d=><pre style={{whiteSpace:"pre-wrap",overflowWrap:"anywhere",margin:0,color:"var(--muted)"}}>{JSON.stringify(d,null,2)}</pre>}</AsyncPanel></div></>}

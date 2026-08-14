@@ -1,0 +1,53 @@
+{
+  "phase": 1,
+  "name": "PowerX Core Orchestration Layer",
+  "scope": [
+    "model catalog",
+    "runtime capability registry",
+    "automatic routing",
+    "provider abstraction",
+    "FastAPI gateway",
+    "remote inference client",
+    "configuration and health"
+  ],
+  "excluded": [
+    "trading logic",
+    "market data",
+    "backtesting",
+    "broker execution",
+    "image generation",
+    "video generation",
+    "CPU model runtime",
+    "mobile model runtime"
+  ],
+  "duplicate_policy": "Future phase ZIPs must not contain any Phase 1 file path.",
+  "files": [
+    ".env.example",
+    ".gitignore",
+    "FUTURE_PHASE_CONTRACT.md",
+    "PHASE_1_MANIFEST.json",
+    "README.md",
+    "apps/__init__.py",
+    "apps/api/__init__.py",
+    "apps/api/main.py",
+    "apps/api/schemas.py",
+    "powerx/__init__.py",
+    "powerx/core/__init__.py",
+    "powerx/core/orchestrator.py",
+    "powerx/core/provider_factory.py",
+    "powerx/core/settings.py",
+    "powerx/models/__init__.py",
+    "powerx/models/catalog.py",
+    "powerx/providers/__init__.py",
+    "powerx/providers/base.py",
+    "powerx/providers/openai_compatible.py",
+    "powerx/router/__init__.py",
+    "powerx/router/router.py",
+    "powerx/router/task_types.py",
+    "pyproject.toml",
+    "requirements.txt",
+    "tests/test_catalog.py",
+    "tests/test_router.py"
+  ],
+  "file_count": 26
+}
