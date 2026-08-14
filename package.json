@@ -1,0 +1,28 @@
+{
+  "name": "powerx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerX10/PowerX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/powerX10/PowerX/issues"
+  },
+  "homepage": "https://github.com/powerX10/PowerX#readme",
+  "dependencies": {
+    "@beamcloud/beam-js": "^1.0.0-rc.33",
+    "dotenv": "^17.4.2"
+  }
+}
