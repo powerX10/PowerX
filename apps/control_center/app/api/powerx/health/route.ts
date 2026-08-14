@@ -1,3 +1,1 @@
-import { NextResponse } from "next/server";
-import { control } from "@/lib/powerx-server";
-export async function GET(){ try{return NextResponse.json(await control("/health/all"));}catch(e){return NextResponse.json({error:String(e)},{status:500});} }
+import{NextResponse}from"next/server";import{hasSession}from"@/lib/session";import{control}from"@/lib/powerx";export async function GET(){if(!(await hasSession()))return NextResponse.json({error:"Unauthorized"},{status:401});return NextResponse.json(await control("/health/all"))}

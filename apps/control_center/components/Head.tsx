@@ -1,0 +1,1 @@
+export function Head({title,sub}:{title:string,sub:string}){return <div className="top"><div><h1>{title}</h1><div className="muted">{sub}</div></div></div>}

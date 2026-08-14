@@ -1,14 +1,2 @@
-import { NextRequest, NextResponse } from "next/server";
-import { adminAuth } from "@/lib/firebase-admin";
-import { OWNER_EMAIL } from "@/lib/webauthn";
-import { setBootstrap } from "@/lib/session";
-
-export async function POST(req: NextRequest) {
-  const { idToken } = await req.json();
-  const decoded = await adminAuth.verifyIdToken(idToken, true);
-  if (!decoded.email_verified || decoded.email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
-    return NextResponse.json({ error: "Owner verification failed" }, { status: 403 });
-  }
-  await setBootstrap();
-  return NextResponse.json({ ok: true });
-}
+import{NextRequest,NextResponse}from"next/server";import{getAdminAuth}from"@/lib/firebase-admin";import{OWNER_EMAIL}from"@/lib/auth";
+export async function POST(req:NextRequest){try{const{idToken}=await req.json();const d=await getAdminAuth().verifyIdToken(idToken,true);if(!d.email_verified||d.email?.toLowerCase()!==OWNER_EMAIL)return NextResponse.json({error:"Forbidden"},{status:403});return NextResponse.json({ok:true})}catch(e){return NextResponse.json({error:String(e)},{status:401})}}

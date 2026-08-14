@@ -1,0 +1,1 @@
+"use client";import{useEffect,useState}from"react";export function Remote({url}:{url:string}){const[d,setD]=useState<any>(null);useEffect(()=>{fetch(url).then(r=>r.json()).then(setD).catch(e=>setD({error:String(e)}))},[url]);return <pre style={{whiteSpace:"pre-wrap",overflowWrap:"anywhere"}}>{d?JSON.stringify(d,null,2):"Loading…"}</pre>}

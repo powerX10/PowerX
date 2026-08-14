@@ -1,1 +1,0 @@
-export function PageHead({title,subtitle}:{title:string,subtitle:string}){return <div className="topbar"><div className="title"><h1>{title}</h1><p>{subtitle}</p></div><span className="pill"><span className="dot"/>PowerX online</span></div>}

@@ -1,1 +1,1 @@
-import{PageHead}from"@/components/PageHead";import{ChatPanel}from"@/components/ChatPanel";export default function Page(){return <><PageHead title="PowerX Chat" subtitle="Automatic model selection with voice and file input."/><ChatPanel/></>}
+import{Head}from"@/components/Head";import{Chat}from"@/components/Chat";export default function Page(){return <><Head title="PowerX Chat" sub="Automatic model routing."/><Chat/></>}

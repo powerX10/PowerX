@@ -1,4 +1,1 @@
-import { redirect } from "next/navigation";
-import { hasSession } from "@/lib/session";
-import { Nav } from "@/components/Nav";
-export default async function Protected({children}:{children:React.ReactNode}){if(!(await hasSession()))redirect("/login");return <div className="shell"><Nav/><main className="main">{children}</main></div>}
+import{redirect}from"next/navigation";import{hasSession}from"@/lib/session";import{Nav}from"@/components/Nav";export const dynamic="force-dynamic";export default async function L({children}:{children:React.ReactNode}){if(!(await hasSession()))redirect("/login");return <div className="shell"><Nav/><main className="main">{children}</main></div>}
