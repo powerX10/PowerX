@@ -1,9 +1,5 @@
-import { Login } from "@/components/Login";
+import { redirect } from "next/navigation";
 
 export default function LoginPage() {
-  return (
-    <main className="shell">
-      <Login />
-    </main>
-  );
+  redirect("/");
 }

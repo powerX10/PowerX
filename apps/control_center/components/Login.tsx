@@ -13,10 +13,10 @@ const OWNER_EMAIL = "syedafsharkhadri63@gmail.com";
 export function Login() {
   const [email, setEmail] = useState(OWNER_EMAIL);
   const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState("");
+  const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
 
-  async function createServerSession(user: any) {
+  async function finishLogin(user: any) {
     const idToken = await user.getIdToken(true);
 
     const response = await fetch("/api/auth/bootstrap", {
@@ -30,112 +30,133 @@ export function Login() {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      throw new Error(data.error || "PowerX login rejected");
+      throw new Error(data.error || "PowerX login failed");
     }
 
     window.location.href = "/dashboard";
   }
 
-  async function emailLogin() {
+  async function loginWithEmail() {
     try {
       setBusy(true);
-      setMsg("");
+      setMessage("");
 
-      if (email.trim().toLowerCase() !== OWNER_EMAIL) {
-        throw new Error("This PowerX account is private.");
+      const normalizedEmail = email.trim().toLowerCase();
+
+      if (normalizedEmail !== OWNER_EMAIL) {
+        throw new Error("Only the PowerX owner account can sign in.");
       }
 
-      const credential = await signInWithEmailAndPassword(
+      if (!password) {
+        throw new Error("Enter your password.");
+      }
+
+      const result = await signInWithEmailAndPassword(
         getFirebaseAuth(),
-        email.trim(),
+        normalizedEmail,
         password
       );
 
-      await createServerSession(credential.user);
+      await finishLogin(result.user);
     } catch (error: any) {
-      setMsg(error?.message || String(error));
+      setMessage(error?.message || "Unable to sign in.");
     } finally {
       setBusy(false);
     }
   }
 
-  async function googleLogin() {
+  async function loginWithGoogle() {
     try {
       setBusy(true);
-      setMsg("");
+      setMessage("");
 
       const provider = new GoogleAuthProvider();
+
       provider.setCustomParameters({
         prompt: "select_account",
       });
 
-      const credential = await signInWithPopup(
+      const result = await signInWithPopup(
         getFirebaseAuth(),
         provider
       );
 
-      const userEmail = credential.user.email?.toLowerCase();
+      const signedEmail =
+        result.user.email?.toLowerCase();
 
-      if (userEmail !== OWNER_EMAIL) {
+      if (signedEmail !== OWNER_EMAIL) {
         await getFirebaseAuth().signOut();
-        throw new Error("Only the PowerX owner account is allowed.");
+        throw new Error(
+          "Only the PowerX owner Google account can sign in."
+        );
       }
 
-      await createServerSession(credential.user);
+      await finishLogin(result.user);
     } catch (error: any) {
-      setMsg(error?.message || String(error));
+      setMessage(error?.message || "Google sign in failed.");
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <div className="card login">
-      <div className="logo">X</div>
+    <div className="stack" style={{ width: "100%" }}>
+      <div style={{ textAlign: "left" }}>
+        <label className="muted">Email</label>
 
-      <h1>PowerX</h1>
-      <p className="muted">Private AI control center.</p>
-
-      <div className="stack">
         <input
           className="input"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
           autoComplete="email"
+          placeholder="Enter email"
+          style={{ marginTop: 7 }}
         />
+      </div>
+
+      <div style={{ textAlign: "left" }}>
+        <label className="muted">Password</label>
 
         <input
           className="input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
           autoComplete="current-password"
+          placeholder="Enter password"
+          style={{ marginTop: 7 }}
           onKeyDown={(e) => {
-            if (e.key === "Enter") emailLogin();
+            if (e.key === "Enter") {
+              loginWithEmail();
+            }
           }}
         />
-
-        <button
-          className="btn primary"
-          onClick={emailLogin}
-          disabled={busy}
-        >
-          {busy ? "Signing in..." : "Sign in"}
-        </button>
-
-        <button
-          className="btn"
-          onClick={googleLogin}
-          disabled={busy}
-        >
-          Continue with Google
-        </button>
-
-        {msg && <div className="error">{msg}</div>}
       </div>
+
+      <button
+        className="btn primary"
+        onClick={loginWithEmail}
+        disabled={busy}
+      >
+        {busy ? "Signing in..." : "Sign in to PowerX"}
+      </button>
+
+      <div className="muted">or</div>
+
+      <button
+        className="btn"
+        onClick={loginWithGoogle}
+        disabled={busy}
+      >
+        Continue with Google
+      </button>
+
+      {message && (
+        <div className="error">
+          {message}
+        </div>
+      )}
     </div>
   );
 }
