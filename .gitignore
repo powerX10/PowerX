@@ -46,3 +46,4 @@ venv/
 
 # TypeScript build cache
 *.tsbuildinfo
+.vercel

@@ -1,6 +1,141 @@
-"use client";import{sendSignInLinkToEmail,isSignInWithEmailLink,signInWithEmailLink}from"firebase/auth";import{startAuthentication,startRegistration}from"@simplewebauthn/browser";import{getFirebaseAuth}from"@/lib/firebase-client";import{useEffect,useState}from"react";
-const EMAIL="syedafsharkhadri63@gmail.com";
-export function Login(){const[msg,setMsg]=useState("");useEffect(()=>{(async()=>{if(typeof window==="undefined"||!isSignInWithEmailLink(getFirebaseAuth(),location.href))return;try{const c=await signInWithEmailLink(getFirebaseAuth(),EMAIL,location.href),idToken=await c.user.getIdToken(true);let r=await fetch("/api/auth/bootstrap",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idToken})});if(!r.ok)throw new Error("Owner verification rejected");const o=await(await fetch("/api/auth/passkey/register-options")).json(),reg=await startRegistration({optionsJSON:o});r=await fetch("/api/auth/passkey/register-verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(reg)});if(!r.ok)throw new Error("Passkey registration failed");location.href="/dashboard"}catch(e){setMsg(String(e))}})()},[]);
-async function setup(){try{await sendSignInLinkToEmail(getFirebaseAuth(),EMAIL,{url:`${location.origin}/login`,handleCodeInApp:true});setMsg("Verification link sent.")}catch(e){setMsg(String(e))}}
-async function unlock(){try{const r=await fetch("/api/auth/passkey/login-options");if(r.status===404){setMsg("No passkey enrolled. Use First-time setup.");return}const o=await r.json(),a=await startAuthentication({optionsJSON:o}),v=await fetch("/api/auth/passkey/login-verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a)});if(!v.ok)throw new Error("Unlock failed");location.href="/dashboard"}catch(e){setMsg(String(e))}}
-return <div className="card login"><div className="logo">X</div><h1>PowerX</h1><p className="muted">Private AI control center.</p><div className="stack"><button className="btn primary" onClick={unlock}>Unlock with fingerprint / passkey</button><button className="btn" onClick={setup}>First-time setup</button>{msg&&<div className="muted">{msg}</div>}</div></div>}
+"use client";
+
+import { useState } from "react";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { getFirebaseAuth } from "@/lib/firebase-client";
+
+const OWNER_EMAIL = "syedafsharkhadri63@gmail.com";
+
+export function Login() {
+  const [email, setEmail] = useState(OWNER_EMAIL);
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  async function createServerSession(user: any) {
+    const idToken = await user.getIdToken(true);
+
+    const response = await fetch("/api/auth/bootstrap", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idToken }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || "PowerX login rejected");
+    }
+
+    window.location.href = "/dashboard";
+  }
+
+  async function emailLogin() {
+    try {
+      setBusy(true);
+      setMsg("");
+
+      if (email.trim().toLowerCase() !== OWNER_EMAIL) {
+        throw new Error("This PowerX account is private.");
+      }
+
+      const credential = await signInWithEmailAndPassword(
+        getFirebaseAuth(),
+        email.trim(),
+        password
+      );
+
+      await createServerSession(credential.user);
+    } catch (error: any) {
+      setMsg(error?.message || String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function googleLogin() {
+    try {
+      setBusy(true);
+      setMsg("");
+
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({
+        prompt: "select_account",
+      });
+
+      const credential = await signInWithPopup(
+        getFirebaseAuth(),
+        provider
+      );
+
+      const userEmail = credential.user.email?.toLowerCase();
+
+      if (userEmail !== OWNER_EMAIL) {
+        await getFirebaseAuth().signOut();
+        throw new Error("Only the PowerX owner account is allowed.");
+      }
+
+      await createServerSession(credential.user);
+    } catch (error: any) {
+      setMsg(error?.message || String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="card login">
+      <div className="logo">X</div>
+
+      <h1>PowerX</h1>
+      <p className="muted">Private AI control center.</p>
+
+      <div className="stack">
+        <input
+          className="input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          autoComplete="email"
+        />
+
+        <input
+          className="input"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          autoComplete="current-password"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") emailLogin();
+          }}
+        />
+
+        <button
+          className="btn primary"
+          onClick={emailLogin}
+          disabled={busy}
+        >
+          {busy ? "Signing in..." : "Sign in"}
+        </button>
+
+        <button
+          className="btn"
+          onClick={googleLogin}
+          disabled={busy}
+        >
+          Continue with Google
+        </button>
+
+        {msg && <div className="error">{msg}</div>}
+      </div>
+    </div>
+  );
+}
