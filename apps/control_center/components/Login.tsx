@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { getFirebaseAuth } from "@/lib/firebase-client";
+import { prepareFirebaseAuth } from "@/lib/firebase-client";
 
 const OWNER_EMAIL = "syedafsharkhadri63@gmail.com";
 
@@ -24,16 +24,17 @@ export function Login() {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ idToken }),
     });
 
     const data = await response.json().catch(() => ({}));
 
-    if (!response.ok) {
-      throw new Error(data.error || "PowerX login failed");
+    if (!response.ok || !data.ok) {
+      throw new Error(data.error || "PowerX session creation failed");
     }
 
-    window.location.href = "/dashboard";
+    window.location.assign("/dashboard");
   }
 
   async function loginWithEmail() {
@@ -51,8 +52,10 @@ export function Login() {
         throw new Error("Enter your password.");
       }
 
+      const auth = await prepareFirebaseAuth();
+
       const result = await signInWithEmailAndPassword(
-        getFirebaseAuth(),
+        auth,
         normalizedEmail,
         password
       );
@@ -70,22 +73,17 @@ export function Login() {
       setBusy(true);
       setMessage("");
 
-      const provider = new GoogleAuthProvider();
+      const auth = await prepareFirebaseAuth();
 
+      const provider = new GoogleAuthProvider();
       provider.setCustomParameters({
         prompt: "select_account",
       });
 
-      const result = await signInWithPopup(
-        getFirebaseAuth(),
-        provider
-      );
+      const result = await signInWithPopup(auth, provider);
 
-      const signedEmail =
-        result.user.email?.toLowerCase();
-
-      if (signedEmail !== OWNER_EMAIL) {
-        await getFirebaseAuth().signOut();
+      if (result.user.email?.toLowerCase() !== OWNER_EMAIL) {
+        await auth.signOut();
         throw new Error(
           "Only the PowerX owner Google account can sign in."
         );
@@ -101,38 +99,26 @@ export function Login() {
 
   return (
     <div className="stack" style={{ width: "100%" }}>
-      <div style={{ textAlign: "left" }}>
-        <label className="muted">Email</label>
+      <input
+        className="input"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        autoComplete="email"
+      />
 
-        <input
-          className="input"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="email"
-          placeholder="Enter email"
-          style={{ marginTop: 7 }}
-        />
-      </div>
-
-      <div style={{ textAlign: "left" }}>
-        <label className="muted">Password</label>
-
-        <input
-          className="input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-          placeholder="Enter password"
-          style={{ marginTop: 7 }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              loginWithEmail();
-            }
-          }}
-        />
-      </div>
+      <input
+        className="input"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        autoComplete="current-password"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") loginWithEmail();
+        }}
+      />
 
       <button
         className="btn primary"
@@ -152,11 +138,7 @@ export function Login() {
         Continue with Google
       </button>
 
-      {message && (
-        <div className="error">
-          {message}
-        </div>
-      )}
+      {message && <div className="error">{message}</div>}
     </div>
   );
 }
