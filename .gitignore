@@ -47,3 +47,7 @@ venv/
 # TypeScript build cache
 *.tsbuildinfo
 .vercel
+
+# Python generated cache
+__pycache__/
+*.py[cod]
