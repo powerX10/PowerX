@@ -1,1 +1,5 @@
-import{redirect}from"next/navigation";import{hasSession}from"@/lib/session";export const dynamic="force-dynamic";export default async function Page(){redirect((await hasSession())?"/dashboard":"/login")}
+import { redirect } from "next/navigation";
+
+export default function Home() {
+  redirect("/login");
+}

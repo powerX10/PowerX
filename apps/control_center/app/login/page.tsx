@@ -1,1 +1,9 @@
-import{Login}from"@/components/Login";export const dynamic="force-dynamic";export default function Page(){return <main className="login-wrap"><Login/></main>}
+import { Login } from "@/components/Login";
+
+export default function LoginPage() {
+  return (
+    <main className="shell">
+      <Login />
+    </main>
+  );
+}
