@@ -1,0 +1,16 @@
+{
+  "phase": 12,
+  "name": "Runtime Fabric Activation",
+  "additive": true,
+  "features": [
+    "cpu-first Modal/Beam provider routing",
+    "mobile edge routing for small tasks",
+    "Colab GPU16 optional heavy-task worker",
+    "24x7 market daemon orchestration",
+    "confidence opportunity detection",
+    "user confirmation trade gate",
+    "provider health/failover",
+    "CMS CPU-first policy sync",
+    "no hardcoded endpoints"
+  ]
+}

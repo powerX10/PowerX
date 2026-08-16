@@ -1,0 +1,108 @@
+{
+  "version": 12,
+  "policy": {
+    "default_mode": "cpu_first",
+    "small_user_task_order": [
+      "mobile",
+      "cpu",
+      "gpu16"
+    ],
+    "normal_server_task_order": [
+      "cpu",
+      "mobile",
+      "gpu16"
+    ],
+    "heavy_task_order": [
+      "gpu16",
+      "cpu"
+    ],
+    "market_daemon_order": [
+      "cpu"
+    ],
+    "gpu_only_capabilities": [
+      "image_generate",
+      "video_generate"
+    ],
+    "gpu_preferred_capabilities": [
+      "vision",
+      "chart_analysis"
+    ],
+    "mobile_capabilities": [
+      "chat",
+      "embedding",
+      "financial_sentiment",
+      "semantic_search",
+      "beginner_explain"
+    ],
+    "cpu_capabilities": [
+      "chat",
+      "general_reasoning",
+      "financial_sentiment",
+      "news_sentiment",
+      "forecasting",
+      "timeseries_forecast",
+      "rerank",
+      "research",
+      "retrieval",
+      "embedding",
+      "speech_to_text",
+      "text_to_speech",
+      "technical_indicators",
+      "support_resistance",
+      "price_action",
+      "risk_management",
+      "research_backtest"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "modal-cpu-primary",
+      "provider": "modal",
+      "runtime_class": "cpu",
+      "priority": 10,
+      "enabled": true,
+      "endpoint_env": "POWERX_MODAL_CPU_URL",
+      "token_env": "POWERX_MODAL_CPU_TOKEN",
+      "always_available": true
+    },
+    {
+      "id": "beam-cpu-fallback",
+      "provider": "beam",
+      "runtime_class": "cpu",
+      "priority": 20,
+      "enabled": true,
+      "endpoint_env": "POWERX_BEAM_CPU_URL",
+      "token_env": "POWERX_BEAM_TOKEN",
+      "always_available": true
+    },
+    {
+      "id": "colab-gpu16",
+      "provider": "colab",
+      "runtime_class": "gpu16",
+      "priority": 10,
+      "enabled": true,
+      "endpoint_env": "POWERX_COLAB_GPU16_URL",
+      "token_env": "POWERX_COLAB_GPU16_TOKEN",
+      "always_available": false
+    },
+    {
+      "id": "mobile-edge",
+      "provider": "mobile",
+      "runtime_class": "mobile",
+      "priority": 10,
+      "enabled": true,
+      "endpoint_env": "POWERX_MOBILE_EDGE_URL",
+      "token_env": "POWERX_MOBILE_EDGE_TOKEN",
+      "always_available": false
+    }
+  ],
+  "market": {
+    "scan_interval_seconds": 15,
+    "strategy_refresh_seconds": 300,
+    "opportunity_threshold": 0.78,
+    "high_confidence_threshold": 0.86,
+    "require_user_confirmation": true,
+    "auto_trade_default": false,
+    "max_signal_age_seconds": 120
+  }
+}

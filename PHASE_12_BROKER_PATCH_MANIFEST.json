@@ -1,0 +1,9 @@
+{
+  "phase": "12-broker-patch",
+  "files": [
+    "powerx/runtime_fabric/broker.py",
+    "apps/runtime_fabric_api/main.py",
+    "tests_phase12_broker/test_broker.py",
+    "PHASE_12_BROKER_PATCH_README.md"
+  ]
+}
