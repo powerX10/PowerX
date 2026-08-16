@@ -1,0 +1,14 @@
+{
+  "phase": 16,
+  "name": "Final Control Plane, API Platform & Device Runtime",
+  "features": [
+    "visual CMS",
+    "model CRUD",
+    "API keys",
+    "unified product API",
+    "connectors",
+    "visual runtime pages",
+    "3B/4B/6B mobile profiles",
+    "final deployment"
+  ]
+}

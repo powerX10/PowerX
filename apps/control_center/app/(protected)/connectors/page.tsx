@@ -1,0 +1,1 @@
+import Topbar from"@/components/Topbar";import Connectors from"@/components/Connectors";export default function Page(){return <><Topbar title="Connectors" subtitle="External tools and apps"/><Connectors/></>}

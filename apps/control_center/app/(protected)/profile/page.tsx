@@ -1,0 +1,1 @@
+import Topbar from"@/components/Topbar";export default function Page(){return <><Topbar title="Profile" subtitle="Account and MA preferences"/><div className="card" style={{padding:22}}>Firebase account identity and PowerX preferences.</div></>}

@@ -1,0 +1,1 @@
+import Topbar from"@/components/Topbar";import APIKeys from"@/components/APIKeys";export default function Page(){return <><Topbar title="PowerX API" subtitle="Unified product access"/><APIKeys/><div className="card" style={{padding:20,marginTop:14}}><code>POST https://power-x-1.vercel.app/api/v1/ma</code></div></>}

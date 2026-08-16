@@ -1,0 +1,1 @@
+import Topbar from"@/components/Topbar";import ModelCMS from"@/components/ModelCMS";export default function Page(){return <><Topbar title="Model CMS" subtitle="No-code model and routing control"/><ModelCMS/></>}

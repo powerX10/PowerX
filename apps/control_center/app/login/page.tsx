@@ -1,5 +1,1 @@
-import { redirect } from "next/navigation";
-
-export default function LoginPage() {
-  redirect("/");
-}
+import Link from"next/link";import AuthForm from"@/components/AuthForm";export default function Page(){return <main className="authWrap"><div className="card authCard"><Link href="/" className="brand"><span className="brandMark"/>PowerX</Link><h2>Welcome back</h2><AuthForm mode="login"/><p><Link href="/login">Login</Link> · <Link href="/signup">Sign up</Link> · <Link href="/forgot-password">Forgot password</Link></p></div></main>}

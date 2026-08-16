@@ -1,0 +1,1 @@
+import{getFirestore}from"firebase-admin/firestore";import{getAdminApp}from"@/lib/firebase-admin";export function db(){return getFirestore(getAdminApp())}export const COL={models:"powerx_model_overrides",keys:"powerx_api_keys",connectors:"powerx_connectors"};

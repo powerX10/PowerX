@@ -1,0 +1,1 @@
+export default function Topbar({title,subtitle}:{title:string;subtitle?:string}){return <div className="topbar"><div><h2 style={{margin:0}}>{title}</h2>{subtitle&&<div style={{color:"#8d9aab"}}>{subtitle}</div>}</div><span className="pill">● Online</span></div>}

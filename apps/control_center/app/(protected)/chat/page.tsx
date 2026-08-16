@@ -1,1 +1,1 @@
-import{Head}from"@/components/Head";import{Chat}from"@/components/Chat";export default function Page(){return <><Head title="PowerX Chat" sub="Automatic model routing."/><Chat/></>}
+import MAWorkspace from"@/components/MAWorkspace";export default function Page(){return <MAWorkspace/>}

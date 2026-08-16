@@ -1,0 +1,15 @@
+{
+  "phase": 15,
+  "name": "Premium UX, Auth & MA Workspace",
+  "features": [
+    "homepage",
+    "auth",
+    "MA",
+    "voice",
+    "attachments",
+    "history",
+    "retry",
+    "model selector",
+    "fast routing"
+  ]
+}
