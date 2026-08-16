@@ -8,7 +8,7 @@ class MAOrchestrator:
     def __init__(self):self.p=MAPlanner();self.e=RuntimeExecutor();self.i=IdentityResolver()
     async def one(self,step,mid,pref):
         errs=[]
-        for t in targets(step.capability,pref):
+        for t in targets(step.capability,pref,step.payload.get('metadata') or {}):
             if not t.endpoint:continue
             try:
                 data=await (self.e.direct(t.token,t.endpoint,mid,step.capability,step.payload) if t.runtime_class=="cpu"
