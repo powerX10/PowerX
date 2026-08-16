@@ -1,0 +1,26 @@
+{
+  "name": "PowerX Phase 12 Chat + Mobile Runtime Completion",
+  "version": "12.2",
+  "files": [
+    "PHASE_12_CHAT_MOBILE_COMPLETION_README.md",
+    "apps/control_center/lib/powerx.ts",
+    "apps/powerx_production_api/__init__.py",
+    "apps/powerx_production_api/main.py",
+    "deploy_phase12/mobile_edge/bootstrap_termux.sh",
+    "deploy_phase12/mobile_edge/local_inference.py",
+    "deploy_phase12/mobile_edge/worker.py",
+    "deploy_phase12/production_gateway_modal/app.py",
+    "powerx/runtime_fabric/chat_bridge.py",
+    "scripts_phase12/configure_production_gateway.sh",
+    "scripts_phase12/set_control_center_backend.sh",
+    "scripts_phase12/start_mobile_runtime.sh",
+    "scripts_phase12/stop_mobile_runtime.sh",
+    "tests_phase12_completion/test_chat_bridge.py"
+  ],
+  "default_mobile_model": {
+    "repo": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+    "file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "approx_size_mb": 491,
+    "auto_download": true
+  }
+}
