@@ -1,0 +1,1167 @@
+{
+  "models": [
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 6.0,
+          "min_vram_gb": 0.0,
+          "priority": 20,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 6.0,
+          "min_vram_gb": 0.0,
+          "priority": 30,
+          "runtime_class": "mobile"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 4.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "chat",
+        "general_reasoning",
+        "beginner_explain",
+        "trading_tutor",
+        "price_action",
+        "support_resistance",
+        "multi_timeframe",
+        "technical_indicators",
+        "momentum",
+        "trend_regime",
+        "volatility"
+      ],
+      "config": {
+        "adapter": "llamacpp",
+        "cpu": {
+          "context_size": 8192,
+          "threads": 6
+        },
+        "gpu16": {
+          "gpu_memory_utilization": 0.75,
+          "max_model_len": 8192
+        }
+      },
+      "display_name": "Qwen2.5 3B General",
+      "enabled": true,
+      "format": "gguf",
+      "id": "qwen25-3b-general",
+      "quantization": "Q4_K_M",
+      "roles": [
+        "general_assistant",
+        "trading_tutor",
+        "price_action",
+        "support_resistance",
+        "technical_indicators"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "mobile",
+          "cloud"
+        ]
+      },
+      "source_repo": "Qwen/Qwen2.5-3B-Instruct-GGUF",
+      "warehouse_path": "PowerX/Models/01-general-qwen25-3b/qwen2.5-3b-instruct-q4_k_m.gguf"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 3,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 5.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 8.0,
+          "min_vram_gb": 0.0,
+          "priority": 30,
+          "runtime_class": "cpu"
+        }
+      ],
+      "capabilities": [
+        "deep_reasoning",
+        "strategy_reasoning",
+        "consensus",
+        "market_structure",
+        "risk_management",
+        "portfolio_hedging",
+        "strategy_selection",
+        "macro_analysis",
+        "derivatives_analysis",
+        "research_backtest"
+      ],
+      "config": {
+        "adapter": "llamacpp",
+        "cpu": {
+          "context_size": 16384,
+          "threads": 6
+        },
+        "gpu16": {
+          "gpu_memory_utilization": 0.8,
+          "max_model_len": 16384
+        }
+      },
+      "display_name": "Qwen3 4B Reasoning",
+      "enabled": true,
+      "format": "gguf",
+      "id": "qwen3-4b-reasoning",
+      "quantization": "Q4_K_M",
+      "roles": [
+        "reasoning",
+        "final_consensus",
+        "market_structure_smc",
+        "risk_manager",
+        "strategy_selector"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "mobile",
+          "cloud"
+        ]
+      },
+      "source_repo": "Qwen/Qwen3-4B-GGUF",
+      "warehouse_path": "PowerX/Models/02-reasoning-qwen3-4b/Qwen3-4B-Q4_K_M.gguf"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 6.0,
+          "min_vram_gb": 0.0,
+          "priority": 20,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 4.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "coding",
+        "strategy_code",
+        "indicator_code",
+        "backtest_code",
+        "github_coding"
+      ],
+      "config": {
+        "adapter": "llamacpp"
+      },
+      "display_name": "Qwen2.5 Coder 3B",
+      "enabled": true,
+      "format": "gguf",
+      "id": "qwen25-coder-3b",
+      "quantization": "Q4_K_M",
+      "roles": [
+        "coding",
+        "research_backtest"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "mobile",
+          "cloud"
+        ]
+      },
+      "source_repo": "Qwen/Qwen2.5-Coder-3B-Instruct-GGUF",
+      "warehouse_path": "PowerX/Models/03-coding-qwen25-coder-3b/qwen2.5-coder-3b-instruct-q4_k_m.gguf"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 6.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 10.0,
+          "min_vram_gb": 0.0,
+          "priority": 40,
+          "runtime_class": "cpu"
+        }
+      ],
+      "capabilities": [
+        "vision",
+        "chart_analysis",
+        "price_action_visual",
+        "support_resistance_visual",
+        "file_analyze"
+      ],
+      "config": {
+        "adapter": "llamacpp_vision",
+        "mmproj_path": "PowerX/Models/04-chart-vision-qwen25-vl-3b/mmproj-Qwen2.5-VL-3B-Instruct-Q8_0.gguf"
+      },
+      "display_name": "Qwen2.5 VL 3B Chart Vision",
+      "enabled": true,
+      "format": "gguf",
+      "id": "qwen25-vl-3b-chart",
+      "quantization": "Q4_K_M",
+      "roles": [
+        "chart_vision"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "mobile",
+          "cloud"
+        ]
+      },
+      "source_repo": "ggml-org/Qwen2.5-VL-3B-Instruct-GGUF",
+      "warehouse_path": "PowerX/Models/04-chart-vision-qwen25-vl-3b/Qwen2.5-VL-3B-Instruct-Q4_K_M.gguf"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 6.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 12.0,
+          "min_vram_gb": 0.0,
+          "priority": 60,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": false,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 0.0,
+          "priority": 100,
+          "runtime_class": "cloud"
+        }
+      ],
+      "capabilities": [
+        "deep_reasoning",
+        "market_structure",
+        "support_resistance",
+        "technical_indicators",
+        "multi_timeframe",
+        "risk_management",
+        "strategy_selection",
+        "macro_analysis",
+        "fundamental_analysis",
+        "derivatives_analysis",
+        "research_backtest"
+      ],
+      "config": {
+        "adapter": "transformers_text_generation"
+      },
+      "display_name": "Phi-4 Mini Instruct",
+      "enabled": true,
+      "format": "transformers",
+      "id": "phi4-mini-deep",
+      "quantization": null,
+      "roles": [
+        "deep_reasoning",
+        "risk_manager",
+        "strategy_selector"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "microsoft/Phi-4-mini-instruct",
+      "warehouse_path": "PowerX/Models/05-deep-reasoning-phi4-mini"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "financial_sentiment",
+        "news_sentiment",
+        "fundamental_signal"
+      ],
+      "config": {
+        "adapter": "transformers_text_classification"
+      },
+      "display_name": "FinBERT Financial Sentiment",
+      "enabled": true,
+      "format": "transformers",
+      "id": "finbert-sentiment",
+      "quantization": null,
+      "roles": [
+        "news_sentiment"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "ProsusAI/finbert",
+      "warehouse_path": "PowerX/Models/06-financial-sentiment-finbert"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 15,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 25,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "financial_sentiment",
+        "financial_tone",
+        "news_sentiment"
+      ],
+      "config": {
+        "adapter": "transformers_text_classification"
+      },
+      "display_name": "FinBERT Tone",
+      "enabled": true,
+      "format": "transformers",
+      "id": "finbert-tone",
+      "quantization": null,
+      "roles": [
+        "news_sentiment"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "yiyanghkust/finbert-tone",
+      "warehouse_path": "PowerX/Models/07-financial-tone-finbert"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 6,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 20,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 30,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "financial_sentiment",
+        "news_sentiment",
+        "headline_classification"
+      ],
+      "config": {
+        "adapter": "transformers_text_classification"
+      },
+      "display_name": "Financial News DistilRoBERTa",
+      "enabled": true,
+      "format": "transformers",
+      "id": "financial-news-distilroberta",
+      "quantization": null,
+      "roles": [
+        "news_sentiment"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis",
+      "warehouse_path": "PowerX/Models/08-financial-news-distilroberta"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 25,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 35,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "financial_sentiment",
+        "news_sentiment",
+        "fundamental_signal"
+      ],
+      "config": {
+        "adapter": "transformers_text_classification"
+      },
+      "display_name": "FinancialBERT Sentiment",
+      "enabled": true,
+      "format": "transformers",
+      "id": "financialbert-sentiment",
+      "quantization": null,
+      "roles": [
+        "news_sentiment",
+        "fundamental"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "ahmedrachid/FinancialBERT-Sentiment-Analysis",
+      "warehouse_path": "PowerX/Models/09-financialbert-sentiment"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 4.0,
+          "min_vram_gb": 0.0,
+          "priority": 20,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 3.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "forecasting",
+        "timeseries_forecast",
+        "volatility",
+        "trend_regime"
+      ],
+      "config": {
+        "adapter": "chronos"
+      },
+      "display_name": "Chronos T5 Small",
+      "enabled": true,
+      "format": "transformers",
+      "id": "chronos-small",
+      "quantization": null,
+      "roles": [
+        "forecast_quant",
+        "volatility",
+        "trend_regime"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "amazon/chronos-t5-small",
+      "warehouse_path": "PowerX/Models/10-timeseries-chronos"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 4.0,
+          "min_vram_gb": 0.0,
+          "priority": 20,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "forecasting",
+        "timeseries_forecast",
+        "trend_regime",
+        "multi_timeframe"
+      ],
+      "config": {
+        "adapter": "timesfm"
+      },
+      "display_name": "TimesFM 200M",
+      "enabled": true,
+      "format": "custom",
+      "id": "timesfm-200m",
+      "quantization": null,
+      "roles": [
+        "forecast_quant",
+        "trend_regime"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "google/timesfm-1.0-200m",
+      "warehouse_path": "PowerX/Models/11-timeseries-timesfm"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 4.0,
+          "min_vram_gb": 0.0,
+          "priority": 30,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 3.0,
+          "priority": 15,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "forecasting",
+        "timeseries_forecast",
+        "volatility",
+        "multi_timeframe"
+      ],
+      "config": {
+        "adapter": "moirai"
+      },
+      "display_name": "Moirai 1.1 Small",
+      "enabled": true,
+      "format": "transformers",
+      "id": "moirai-small",
+      "quantization": null,
+      "roles": [
+        "forecast_quant",
+        "volatility"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "Salesforce/moirai-1.1-R-small",
+      "warehouse_path": "PowerX/Models/12-timeseries-moirai"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 12,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "forecasting",
+        "timeseries_forecast",
+        "trend_regime",
+        "volatility"
+      ],
+      "config": {
+        "adapter": "granite_ttm"
+      },
+      "display_name": "IBM Granite TTM",
+      "enabled": true,
+      "format": "custom",
+      "id": "granite-ttm",
+      "quantization": null,
+      "roles": [
+        "forecast_quant",
+        "trend_regime"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "ibm-granite/granite-timeseries-ttm-r1",
+      "warehouse_path": "PowerX/Models/13-timeseries-ibm-ttm"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "anomaly_detection",
+        "timeseries_embedding",
+        "volatility",
+        "risk_management"
+      ],
+      "config": {
+        "adapter": "granite_tspulse"
+      },
+      "display_name": "IBM Granite TSPulse",
+      "enabled": true,
+      "format": "custom",
+      "id": "granite-tspulse",
+      "quantization": null,
+      "roles": [
+        "volatility",
+        "risk_manager"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "ibm-granite/granite-timeseries-tspulse-r1",
+      "warehouse_path": "PowerX/Models/14-timeseries-ibm-tspulse"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 3.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "rerank",
+        "research",
+        "retrieval",
+        "fundamental_analysis",
+        "macro_analysis"
+      ],
+      "config": {
+        "adapter": "transformers_reranker"
+      },
+      "display_name": "BGE Reranker Base",
+      "enabled": true,
+      "format": "transformers",
+      "id": "bge-reranker-base",
+      "quantization": null,
+      "roles": [
+        "research_backtest",
+        "fundamental",
+        "macro"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "BAAI/bge-reranker-base",
+      "warehouse_path": "PowerX/Models/15-reranker-bge"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 16,
+          "metadata": {},
+          "min_ram_gb": 2.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 32,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 30,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 4.0,
+          "min_vram_gb": 0.0,
+          "priority": 40,
+          "runtime_class": "mobile"
+        }
+      ],
+      "capabilities": [
+        "embedding",
+        "research",
+        "retrieval",
+        "semantic_search"
+      ],
+      "config": {
+        "adapter": "sentence_transformers"
+      },
+      "display_name": "MiniLM L6 v2 Embedding",
+      "enabled": true,
+      "format": "transformers",
+      "id": "minilm-embedding",
+      "quantization": null,
+      "roles": [
+        "research_backtest"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "mobile",
+          "cloud"
+        ]
+      },
+      "source_repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "warehouse_path": "PowerX/Models/16-embedding-minilm"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 8,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 3.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 6.0,
+          "min_vram_gb": 0.0,
+          "priority": 30,
+          "runtime_class": "cpu"
+        }
+      ],
+      "capabilities": [
+        "speech_to_text",
+        "audio_transcribe",
+        "voice_input"
+      ],
+      "config": {
+        "adapter": "transformers_asr"
+      },
+      "display_name": "Whisper Small",
+      "enabled": true,
+      "format": "transformers",
+      "id": "whisper-small",
+      "quantization": null,
+      "roles": [
+        "speech_input"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "gpu16",
+          "cpu",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "openai/whisper-small",
+      "warehouse_path": "PowerX/Models/17-speech-to-text-whisper"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 3.0,
+          "min_vram_gb": 0.0,
+          "priority": 10,
+          "runtime_class": "cpu"
+        },
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 12,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 2.0,
+          "priority": 20,
+          "runtime_class": "gpu16"
+        }
+      ],
+      "capabilities": [
+        "text_to_speech",
+        "voice_output",
+        "tts"
+      ],
+      "config": {
+        "adapter": "kokoro"
+      },
+      "display_name": "Kokoro 82M TTS",
+      "enabled": true,
+      "format": "custom",
+      "id": "kokoro-82m",
+      "quantization": null,
+      "roles": [
+        "speech_output"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 3,
+        "mode": "auto",
+        "runtime_order": [
+          "cpu",
+          "gpu16",
+          "cloud",
+          "mobile"
+        ]
+      },
+      "source_repo": "hexgrad/Kokoro-82M",
+      "warehouse_path": "PowerX/Models/18-text-to-speech-kokoro"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 10.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": false,
+          "endpoint": null,
+          "max_concurrent": 4,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 0.0,
+          "priority": 100,
+          "runtime_class": "cloud"
+        }
+      ],
+      "capabilities": [
+        "image_generate",
+        "image_edit",
+        "creative_image"
+      ],
+      "config": {
+        "adapter": "diffusers_sdxl"
+      },
+      "display_name": "Stable Diffusion XL Base",
+      "enabled": true,
+      "format": "diffusers",
+      "id": "sdxl-base",
+      "quantization": null,
+      "roles": [
+        "image_generation"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 2,
+        "mode": "gpu_only",
+        "runtime_order": [
+          "gpu16",
+          "cloud",
+          "cpu",
+          "mobile"
+        ]
+      },
+      "source_repo": "stabilityai/stable-diffusion-xl-base-1.0",
+      "warehouse_path": "PowerX/Models/19-image-sdxl"
+    },
+    {
+      "bindings": [
+        {
+          "enabled": true,
+          "endpoint": null,
+          "max_concurrent": 1,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 12.0,
+          "priority": 10,
+          "runtime_class": "gpu16"
+        },
+        {
+          "enabled": false,
+          "endpoint": null,
+          "max_concurrent": 2,
+          "metadata": {},
+          "min_ram_gb": 0.0,
+          "min_vram_gb": 0.0,
+          "priority": 100,
+          "runtime_class": "cloud"
+        }
+      ],
+      "capabilities": [
+        "video_generate",
+        "text_to_video",
+        "creative_video"
+      ],
+      "config": {
+        "adapter": "diffusers_wan"
+      },
+      "display_name": "Wan2.1 T2V 1.3B",
+      "enabled": true,
+      "format": "diffusers",
+      "id": "wan21-t2v-1.3b",
+      "quantization": null,
+      "roles": [
+        "video_generation"
+      ],
+      "routing": {
+        "allow_fallback": true,
+        "max_attempts": 2,
+        "mode": "gpu_only",
+        "runtime_order": [
+          "gpu16",
+          "cloud",
+          "cpu",
+          "mobile"
+        ]
+      },
+      "source_repo": "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+      "warehouse_path": "PowerX/Models/20-video-wan21-1.3b"
+    }
+  ],
+  "version": 41
+}

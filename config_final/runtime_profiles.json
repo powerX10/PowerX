@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "runtime_classes": {
+    "mobile": {"cache_root":"~/.cache/powerx/mobile","always_on":false,"description":"User-device runtime; CMS decides eligible models."},
+    "cpu": {"cache_root":"~/.cache/powerx/cpu","always_on":true,"description":"Continuous CPU runtime for lightweight/specialist models."},
+    "gpu16": {"cache_root":"/content/powerx-cache","always_on":false,"description":"16GB-class accelerator runtime; heavy tasks escalate here."},
+    "cloud": {"cache_root":"/tmp/powerx-cloud-cache","always_on":false,"description":"Optional external runtime. Disabled per-model until configured in CMS."}
+  },
+  "warehouse": {"rclone_remote":"PowerXWarehouse","root":"PowerX/Models"},
+  "policy": {"cms_is_source_of_truth":true,"hardcoded_runtime_assignment":false,"require_healthy_endpoint":true,"fallback_enabled":true}
+}

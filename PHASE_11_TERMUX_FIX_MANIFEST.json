@@ -1,0 +1,24 @@
+{
+  "name": "PowerX Phase 11 Termux Compatibility Fix",
+  "version": 1,
+  "purpose": "Remove Pydantic from the core control-plane path on Termux/Python 3.14 while preserving the Phase 9-11 model API.",
+  "overwrites": [
+    "powerx/controlplane/models.py",
+    "powerx/final_runtime/warehouse.py",
+    "requirements-phase11-final.txt",
+    "scripts_final/sync_final_registry.py",
+    "scripts_final/final_readiness.py",
+    "scripts_final/start_final_api.sh"
+  ],
+  "adds": [
+    "requirements-phase11-api.txt",
+    "PHASE_11_TERMUX_FIX_README.md",
+    "PHASE_11_TERMUX_FIX_MANIFEST.json"
+  ],
+  "validated": {
+    "compileall": true,
+    "phase11_unittest_count": 4,
+    "phase11_unittests_passed": 4,
+    "registry_sync": true
+  }
+}

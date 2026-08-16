@@ -1,0 +1,99 @@
+{
+  "phase": 11,
+  "name": "PowerX Final Integration Layer",
+  "additive": true,
+  "base_commit": "0256b265aef0da9ea8ecd1845a8a65d7d31acb45",
+  "file_count": 18,
+  "files": [
+    {
+      "path": "PHASE_11_FINAL_README.md",
+      "bytes": 2146,
+      "sha256": "dd7c46fb03afb09a7112aff7716ac12ff2a1fa38710aa31d63713882d94cd4a1"
+    },
+    {
+      "path": "apps/powerx_final_api/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "apps/powerx_final_api/main.py",
+      "bytes": 3186,
+      "sha256": "fb8c4ddac7126fd9ddf72f269aaa0935137d023589458a223d9856a7b7dcee39"
+    },
+    {
+      "path": "config_final/model_registry_20.json",
+      "bytes": 15803,
+      "sha256": "04de51a2dfcfe7c5e506e934c304063b461be691ab93515ea634d4c80bfd32e1"
+    },
+    {
+      "path": "config_final/runtime_profiles.json",
+      "bytes": 844,
+      "sha256": "8e8cf1f71bd5a030e9ffec26f09d3e74884fcb68c2f9b350ce42c52e7cef18a4"
+    },
+    {
+      "path": "powerx/final_runtime/__init__.py",
+      "bytes": 274,
+      "sha256": "8de8178d6e75bbf416550f7a65eefdbe6b57752374a049560d48d682286c21eb"
+    },
+    {
+      "path": "powerx/final_runtime/gateway.py",
+      "bytes": 3569,
+      "sha256": "ff1944870f472f9df1665ce19978ae07b46e890d30a43df263004170d883b26d"
+    },
+    {
+      "path": "powerx/final_runtime/readiness.py",
+      "bytes": 2772,
+      "sha256": "63a27efba276e6591a275ff4ae9d50de28738999495cfd9731c6cc0314a39962"
+    },
+    {
+      "path": "powerx/final_runtime/registry_sync.py",
+      "bytes": 1821,
+      "sha256": "ff5417f5962f925a5c75ee07629652d50aa70ea005f458737f089ced58c8e3bb"
+    },
+    {
+      "path": "powerx/final_runtime/runtime_service.py",
+      "bytes": 4036,
+      "sha256": "f858f0b9d0298c6e6aa6f042fb59310ea225a9d6d0159e15aebf841f73a7c260"
+    },
+    {
+      "path": "powerx/final_runtime/unified.py",
+      "bytes": 1254,
+      "sha256": "5adf865896261071764e96615d185accf113dc5a4182397608e0e8048bc57b50"
+    },
+    {
+      "path": "powerx/final_runtime/warehouse.py",
+      "bytes": 2036,
+      "sha256": "ff25d1beb32a7ccf5e52bc84a094307e27d81ea9f3cb3014c5d5ee2b1d6229d5"
+    },
+    {
+      "path": "requirements-phase11-final.txt",
+      "bytes": 55,
+      "sha256": "3a19e489957613210bed051a6562baa233ff33ddb70a0dcde8fe7f21c85aa229"
+    },
+    {
+      "path": "scripts_final/final_readiness.py",
+      "bytes": 521,
+      "sha256": "9a9888ee79097d7a0e2c163acf7f78c72e45058c3b069f3d2ccb32ec77343df8"
+    },
+    {
+      "path": "scripts_final/start_final_api.sh",
+      "bytes": 267,
+      "sha256": "cef910ab2d016a15f6ec2f03e5fc8c6deba4f4bfb899c55c3e04401d82b03bbf"
+    },
+    {
+      "path": "scripts_final/sync_final_registry.py",
+      "bytes": 170,
+      "sha256": "f9deb87c4b2922039850886fcff6fcf01bdd2cd63dfb719a440c37e56271db47"
+    },
+    {
+      "path": "tests_phase11/test_final_registry.py",
+      "bytes": 1178,
+      "sha256": "2bea0bd6e545c618577e868971902bba950677911e219e6871ababb8fe4c3704"
+    },
+    {
+      "path": "tests_phase11/test_gateway.py",
+      "bytes": 1217,
+      "sha256": "8198e9d379a1a343df7555a6f96a1c07f372a6c500496c4ff9d100587c631b50"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Termux-safe Phase 11 core/runtime dependency.
+# FastAPI/Pydantic are intentionally split out because pydantic-core may require
+# a Rust build on Android/Termux. Install requirements-phase11-api.txt only on
+# an API/runtime host with supported wheels/build tooling.
+httpx>=0.28
