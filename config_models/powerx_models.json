@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "qwen25-3b-general",
+      "display_name": "Qwen2.5 3B General",
+      "source_repo": "Qwen/Qwen2.5-3B-Instruct-GGUF",
+      "warehouse_path": "PowerX/Models/01-general-qwen25-3b/qwen2.5-3b-instruct-q4_k_m.gguf",
+      "format": "gguf",
+      "quantization": "Q4_K_M",
+      "capabilities": ["chat", "general_reasoning", "beginner_explain"],
+      "roles": ["general_assistant", "trading_tutor"],
+      "enabled": true,
+      "bindings": [
+        {"runtime_class":"cpu","enabled":true,"priority":20,"max_concurrent":2,"min_ram_gb":6},
+        {"runtime_class":"mobile","enabled":true,"priority":30,"max_concurrent":1,"min_ram_gb":6},
+        {"runtime_class":"gpu16","enabled":true,"priority":10,"max_concurrent":4,"min_vram_gb":4}
+      ],
+      "routing":{"mode":"auto","runtime_order":["gpu16","cpu","mobile","cloud"],"allow_fallback":true,"max_attempts":3},
+      "config":{"cpu":{"context_size":8192,"threads":6},"gpu16":{"max_model_len":8192,"gpu_memory_utilization":0.75}}
+    },
+    {
+      "id":"qwen3-4b-reasoning",
+      "display_name":"Qwen3 4B Reasoning",
+      "source_repo":"Qwen/Qwen3-4B-GGUF",
+      "warehouse_path":"PowerX/Models/02-reasoning-qwen3-4b/Qwen3-4B-Q4_K_M.gguf",
+      "format":"gguf",
+      "quantization":"Q4_K_M",
+      "capabilities":["deep_reasoning","strategy_reasoning","consensus"],
+      "roles":["reasoning","final_consensus"],
+      "enabled":true,
+      "bindings":[
+        {"runtime_class":"gpu16","enabled":true,"priority":10,"max_concurrent":3,"min_vram_gb":5},
+        {"runtime_class":"cpu","enabled":true,"priority":30,"max_concurrent":1,"min_ram_gb":8}
+      ],
+      "routing":{"mode":"auto","runtime_order":["gpu16","cpu","mobile","cloud"],"allow_fallback":true,"max_attempts":3},
+      "config":{"cpu":{"context_size":16384,"threads":6},"gpu16":{"max_model_len":16384,"gpu_memory_utilization":0.80}}
+    },
+    {
+      "id":"qwen25-coder-3b",
+      "display_name":"Qwen2.5 Coder 3B",
+      "source_repo":"Qwen/Qwen2.5-Coder-3B-Instruct-GGUF",
+      "warehouse_path":"PowerX/Models/03-coding-qwen25-coder-3b/qwen2.5-coder-3b-instruct-q4_k_m.gguf",
+      "format":"gguf","quantization":"Q4_K_M",
+      "capabilities":["coding","strategy_code","indicator_code"],"roles":["coding"],"enabled":true,
+      "bindings":[{"runtime_class":"cpu","enabled":true,"priority":20,"max_concurrent":1,"min_ram_gb":6},{"runtime_class":"gpu16","enabled":true,"priority":10,"max_concurrent":2,"min_vram_gb":4}],
+      "routing":{"mode":"auto","runtime_order":["gpu16","cpu","mobile","cloud"],"allow_fallback":true,"max_attempts":3},"config":{}
+    },
+    {
+      "id":"qwen25-vl-3b-chart",
+      "display_name":"Qwen2.5 VL 3B Chart Vision",
+      "source_repo":"ggml-org/Qwen2.5-VL-3B-Instruct-GGUF",
+      "warehouse_path":"PowerX/Models/04-chart-vision-qwen25-vl-3b/Qwen2.5-VL-3B-Instruct-Q4_K_M.gguf",
+      "format":"gguf","quantization":"Q4_K_M",
+      "capabilities":["vision","chart_analysis","price_action_visual","support_resistance_visual"],"roles":["chart_vision"],"enabled":true,
+      "bindings":[{"runtime_class":"gpu16","enabled":true,"priority":10,"max_concurrent":2,"min_vram_gb":6},{"runtime_class":"cpu","enabled":true,"priority":40,"max_concurrent":1,"min_ram_gb":10}],
+      "routing":{"mode":"auto","runtime_order":["gpu16","cpu","mobile","cloud"],"allow_fallback":true,"max_attempts":3},"config":{}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "roles": [
+    {"id":"price_action","capability":"price_action","weight":1.3,"required":true,"enabled":true,"prompt":"Analyze candles, swings, structure breaks, trend, ranges, reaction quality and price action context."},
+    {"id":"chart_vision","capability":"chart_analysis","weight":1.1,"required":false,"enabled":true,"prompt":"Visually inspect the chart for structure, patterns, levels, trend lines and inconsistencies. Do not hallucinate unseen chart data."},
+    {"id":"market_structure_smc","capability":"market_structure","weight":1.2,"required":true,"enabled":true,"prompt":"Analyze BOS/CHOCH, liquidity pools, displacement, order-block style zones and structural invalidation without treating SMC terminology as certainty."},
+    {"id":"support_resistance","capability":"support_resistance","weight":1.15,"required":true,"enabled":true,"prompt":"Identify support/resistance, supply/demand, repeated reactions, break/retest behavior and invalidation zones."},
+    {"id":"technical_indicators","capability":"technical_indicators","weight":1.0,"required":true,"enabled":true,"prompt":"Interpret provided indicators in context; avoid indicator-only trade decisions and flag divergences/conflicts."},
+    {"id":"momentum","capability":"momentum","weight":0.9,"required":false,"enabled":true,"prompt":"Assess momentum strength, acceleration/deceleration and divergence using available price/indicator data."},
+    {"id":"trend_regime","capability":"trend_regime","weight":1.0,"required":true,"enabled":true,"prompt":"Classify trend/range/transition regime and explain what evidence would invalidate the regime."},
+    {"id":"multi_timeframe","capability":"multi_timeframe","weight":1.05,"required":true,"enabled":true,"prompt":"Compare available timeframes and identify alignment or conflict between higher-timeframe context and lower-timeframe setup."},
+    {"id":"volatility","capability":"volatility","weight":0.9,"required":false,"enabled":true,"prompt":"Assess volatility state, expansion/compression and execution risk."},
+    {"id":"liquidity_orderflow","capability":"liquidity_orderflow","weight":1.0,"required":false,"enabled":true,"prompt":"Use available volume/order-flow/liquidity data to identify imbalances and execution context. State when such data is unavailable."},
+    {"id":"fundamental","capability":"fundamental_analysis","weight":1.15,"required":false,"enabled":true,"prompt":"Analyze company/asset fundamentals supplied in context and distinguish durable fundamentals from short-term market narrative."},
+    {"id":"news_sentiment","capability":"financial_sentiment","weight":0.9,"required":false,"enabled":true,"prompt":"Analyze supplied news sentiment, relevance, recency and likely market sensitivity; avoid treating sentiment as direction certainty."},
+    {"id":"macro","capability":"macro_analysis","weight":1.1,"required":false,"enabled":true,"prompt":"Analyze macro drivers such as rates, inflation, currency, liquidity and risk sentiment when data is provided."},
+    {"id":"derivatives","capability":"derivatives_analysis","weight":1.0,"required":false,"enabled":true,"prompt":"Analyze options/futures positioning, OI, volatility and derivative-specific risk using supplied data."},
+    {"id":"forecast_quant","capability":"forecasting","weight":0.85,"required":false,"enabled":true,"prompt":"Interpret time-series forecast output probabilistically. Focus on uncertainty bands, regime sensitivity and forecast failure modes."},
+    {"id":"risk_manager","capability":"risk_management","weight":1.5,"required":true,"enabled":true,"prompt":"Challenge the setup. Identify invalidation, downside scenarios, position-sizing concerns, leverage risk, gap/liquidity risk and conditions to avoid the trade."},
+    {"id":"portfolio_hedge","capability":"portfolio_hedging","weight":1.15,"required":false,"enabled":true,"prompt":"Assess correlation, concentration, portfolio exposure and potential hedges based only on supplied holdings/exposures."},
+    {"id":"strategy_selector","capability":"strategy_selection","weight":1.05,"required":true,"enabled":true,"prompt":"Choose which strategy family fits the detected regime and explain why other strategies are unsuitable."},
+    {"id":"research_backtest","capability":"research_backtest","weight":0.85,"required":false,"enabled":true,"prompt":"Evaluate whether the thesis is testable, which assumptions require historical validation, and what backtest biases to avoid."},
+    {"id":"opportunity_consensus","capability":"consensus","weight":1.4,"required":true,"enabled":true,"prompt":"Act as an independent skeptical reviewer of the overall opportunity. Look for contradictions, missing data and overconfidence before agreeing with a directional thesis."}
+  ]
+}

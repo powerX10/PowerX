@@ -1,0 +1,21 @@
+{
+  "phase": 9,
+  "name": "Dynamic Model CMS + Runtime Control Plane",
+  "additive": true,
+  "duplicate_existing_paths": 0,
+  "file_count": 12,
+  "files": [
+    "PHASE_9_README.md",
+    "apps/model_cms_api/__init__.py",
+    "apps/model_cms_api/main.py",
+    "config_models/powerx_models.json",
+    "powerx/controlplane/__init__.py",
+    "powerx/controlplane/models.py",
+    "powerx/controlplane/resolver.py",
+    "powerx/controlplane/runtime_config.py",
+    "powerx/controlplane/store.py",
+    "requirements-phase9.txt",
+    "tests_phase9/test_controlplane.py",
+    "PHASE_9_MANIFEST.json"
+  ]
+}

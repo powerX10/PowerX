@@ -1,0 +1,25 @@
+{
+  "phase": 10,
+  "name": "Trading Intelligence Swarm + Zerion X1 Bridge",
+  "additive": true,
+  "duplicate_existing_paths": 0,
+  "file_count": 16,
+  "files": [
+    "PHASE_10_README.md",
+    "apps/trading_api/__init__.py",
+    "apps/trading_api/main.py",
+    "config_trading/trading_roles.json",
+    "integrations/zerionx1_trading/USAGE.md",
+    "integrations/zerionx1_trading/client.py",
+    "powerx/trading/__init__.py",
+    "powerx/trading/consensus.py",
+    "powerx/trading/orchestrator.py",
+    "powerx/trading/prompts.py",
+    "powerx/trading/provider.py",
+    "powerx/trading/roles.py",
+    "powerx/trading/schema.py",
+    "requirements-phase10.txt",
+    "tests_phase10/test_consensus.py",
+    "PHASE_10_MANIFEST.json"
+  ]
+}
