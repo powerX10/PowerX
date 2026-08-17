@@ -1,8 +1,2 @@
-import{NextRequest,NextResponse}from"next/server";
-import{hasSession}from"@/lib/session";
-import{infer}from"@/lib/powerx";
-export async function POST(req:NextRequest){
- if(!(await hasSession()))return NextResponse.json({error:"Unauthorized"},{status:401});
- const body=await req.json();
- return NextResponse.json(await infer({...body,product_id:"powerx",founder_mode:true}));
-}
+import{NextRequest,NextResponse}from"next/server";import{hasSession}from"@/lib/session";import{infer}from"@/lib/powerx";export const maxDuration=60;
+export async function POST(req:NextRequest){if(!(await hasSession()))return NextResponse.json({error:'Unauthorized'},{status:401});try{const body=await req.json();const x:any=await infer({...body,product_id:'powerx',founder_mode:true});const raw=String(x?.error||'').toLowerCase();if(raw.includes('workspace')&&raw.includes('disabled'))return NextResponse.json({ok:false,error:'PowerX compute is temporarily offline.',code:'COMPUTE_OFFLINE'},{status:503});return NextResponse.json(x,{status:x?.ok===false?502:200})}catch(e:any){return NextResponse.json({ok:false,error:e?.message||'PowerX request failed'},{status:500})}}
