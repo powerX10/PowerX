@@ -1,0 +1,11 @@
+{
+  "models": 20,
+  "routing": [
+    "mobile",
+    "cpu",
+    "gpu16"
+  ],
+  "gpu_optional": true,
+  "control_plane": "Vercel + Firebase Firestore",
+  "modal_required": false
+}

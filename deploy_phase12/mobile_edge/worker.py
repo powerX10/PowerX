@@ -1,59 +1,18 @@
-"""PowerX mobile edge worker.
-
-Pulls only `runtime_class=mobile` jobs. The required tiny model is bootstrapped
-automatically by bootstrap_termux.sh; users do not manually download weights.
-"""
-import json
-import os
-import time
-import urllib.request
-
-BROKER = os.environ["POWERX_BROKER_URL"].rstrip("/")
-TOKEN = os.getenv("POWERX_MOBILE_EDGE_TOKEN") or os.getenv("POWERX_WORKER_TOKEN", "")
-LOCAL = os.getenv("POWERX_MOBILE_LOCAL_URL", "http://127.0.0.1:8080").rstrip("/")
-
-
-def call(url, payload=None, timeout=300):
-    data = None if payload is None else json.dumps(payload).encode()
-    req = urllib.request.Request(
-        url,
-        data=data,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {TOKEN}",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode())
-
-
-print("POWERX MOBILE EDGE WORKER ONLINE")
-
+import json,os,time,urllib.request,threading
+B=os.getenv("POWERX_PUBLIC_URL","https://power-x-1.vercel.app").rstrip("/")+"/api/runtime";T=os.getenv("POWERX_NODE_TOKEN") or os.getenv("POWERX_WORKER_TOKEN","");N=os.getenv("POWERX_MOBILE_NODE_ID","mobile-"+os.uname().nodename);L="http://127.0.0.1:8080"
+def c(path,p=None,t=120,base=None):data=None if p is None else json.dumps(p).encode();req=urllib.request.Request((base or B)+path,data=data,headers={"Content-Type":"application/json","Authorization":"Bearer "+T});return json.loads(urllib.request.urlopen(req,timeout=t).read().decode())
+def hb():
+ while True:
+  try:
+   h=c("/health",t=10,base=L);c("/nodes/heartbeat",{"node_id":N,"name":"Android Device","runtime_class":"mobile","models":h.get("supported_models",[]),"capabilities":["chat","coding","deep_reasoning"],"ram_gb":h.get("ram_gb"),"active_model":h.get("active_model")})
+  except Exception as e:print("heartbeat",e)
+  time.sleep(15)
+threading.Thread(target=hb,daemon=True).start();print("POWERX MOBILE NODE ONLINE")
 while True:
-    try:
-        job_resp = call(BROKER + "/workers/pull?runtime_class=mobile", timeout=60)
-        job = job_resp.get("job")
-        if not job:
-            time.sleep(3)
-            continue
-
-        try:
-            result = call(LOCAL + "/infer", job, timeout=300)
-            ok = bool(result.get("ok", True))
-            call(BROKER + "/workers/result", {
-                "job_id": job["id"],
-                "ok": ok,
-                "result": result if ok else None,
-                "error": None if ok else result.get("error", "mobile inference failed"),
-            }, timeout=60)
-        except Exception as exc:
-            call(BROKER + "/workers/result", {
-                "job_id": job["id"],
-                "ok": False,
-                "error": str(exc),
-            }, timeout=60)
-    except KeyboardInterrupt:
-        break
-    except Exception as exc:
-        print("MOBILE WORKER ERROR:", repr(exc))
-        time.sleep(5)
+ try:
+  j=c(f"/jobs/pull?runtime_class=mobile&node_id={N}",t=60).get("job")
+  if not j:time.sleep(1);continue
+  try:r=c("/infer",j,t=1200,base=L);c("/jobs/result",{"job_id":j["id"],"ok":bool(r.get("ok",True)),"result":r if r.get("ok",True) else None,"error":r.get("error")})
+  except Exception as e:c("/jobs/result",{"job_id":j["id"],"ok":False,"error":str(e)})
+ except KeyboardInterrupt:break
+ except Exception as e:print("mobile",e);time.sleep(3)

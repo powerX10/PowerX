@@ -1,1 +1,1 @@
-import{Head}from"@/components/Head";import{Remote}from"@/components/Remote";export default function Page(){return <><Head title="Settings" sub="PowerX settings."/><div className="card"><Remote url="/api/powerx/settings"/></div></>}
+import PageTitle from"@/components/PageTitle";import RuntimeStatusClient from"@/components/RuntimeStatusClient";export default function Page(){return <><PageTitle title="Settings" sub="PowerX routing and runtime policy."/><RuntimeStatusClient settings/></>}

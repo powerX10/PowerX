@@ -1,0 +1,2 @@
+import{NextResponse}from"next/server";import{hasSession}from"@/lib/session";import{readJob}from"@/lib/runtime-broker";
+export async function GET(_:Request,{params}:{params:Promise<{id:string}>}){if(!(await hasSession()))return NextResponse.json({error:"Unauthorized"},{status:401});const{id}=await params,j:any=await readJob(id);if(!j)return NextResponse.json({error:"Not found"},{status:404});return NextResponse.json({ok:true,id,status:j.status,result:j.result,error:j.error,runtime_class:j.runtime_class,model_id:j.model_id,capability:j.capability})}

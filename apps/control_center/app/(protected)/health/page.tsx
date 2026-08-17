@@ -1,1 +1,1 @@
-import{Head}from"@/components/Head";import{Remote}from"@/components/Remote";export default function Page(){return <><Head title="Health" sub="PowerX health."/><div className="card"><Remote url="/api/powerx/health"/></div></>}
+import PageTitle from"@/components/PageTitle";import RuntimeStatusClient from"@/components/RuntimeStatusClient";export default function Page(){return <><PageTitle title="Health" sub="Runtime health without raw provider JSON."/><RuntimeStatusClient/></>}
