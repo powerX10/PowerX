@@ -1,6 +1,6 @@
 import { getAdminDb } from "@/lib/firebase-admin";
 export type RC="mobile"|"cpu"|"gpu16";
-export type M={id:string;name:string;capabilities:string[];runtimeOrder:RC[];enabled:boolean;sourceRepo?:string;file?:string};
+export type M={id:string;name:string;capabilities:string[];runtimeOrder:RC[];enabled:boolean;sourceRepo?:string;file?:string;warehousePath?:string;notes?:string};
 const B:M[]=[
 {id:"qwen25-3b-general",name:"Qwen2.5 3B General",capabilities:["chat"],runtimeOrder:["mobile","cpu","gpu16"],enabled:true,sourceRepo:"Qwen/Qwen2.5-3B-Instruct-GGUF",file:"qwen2.5-3b-instruct-q4_k_m.gguf"},
 {id:"qwen3-4b-reasoning",name:"Qwen3 4B Reasoning",capabilities:["chat","deep_reasoning","chart_analysis"],runtimeOrder:["mobile","cpu","gpu16"],enabled:true,sourceRepo:"Qwen/Qwen3-4B-GGUF",file:"Qwen3-4B-Q4_K_M.gguf"},
@@ -23,5 +23,6 @@ const B:M[]=[
 {id:"sdxl-base",name:"SDXL Base",capabilities:["image_generate","image_edit"],runtimeOrder:["gpu16","cpu"],enabled:true},
 {id:"wan21-1.3b",name:"Wan 2.1 1.3B",capabilities:["video_generate"],runtimeOrder:["gpu16","cpu"],enabled:true}
 ];
-export async function models(){const s=await getAdminDb().collection("powerx_model_overrides").get();const o=new Map(s.docs.map(d=>[d.id,d.data() as any]));return B.map(m=>{const x=o.get(m.id)||{};return{...m,name:x.displayName||m.name,enabled:x.enabled??m.enabled,runtimeOrder:x.runtime&&x.runtime!=="auto"?[x.runtime,...m.runtimeOrder.filter(r=>r!==x.runtime)]:m.runtimeOrder}})}
+export function baseModels(){return B.map(m=>({...m,runtimeOrder:[...m.runtimeOrder]}))}
+export async function models(){const s=await getAdminDb().collection("powerx_model_overrides").get();const o=new Map(s.docs.map(d=>[d.id,d.data() as any]));return B.map(m=>{const x=o.get(m.id)||{};let r=[...m.runtimeOrder] as RC[];if(Array.isArray(x.runtimeOrder)&&x.runtimeOrder.length)r=x.runtimeOrder;else if(x.runtime&&x.runtime!=="auto")r=[x.runtime,...r.filter(v=>v!==x.runtime)] as RC[];return{...m,name:x.displayName||x.name||m.name,enabled:x.enabled??m.enabled,sourceRepo:x.sourceRepo||m.sourceRepo,file:x.file||m.file,warehousePath:x.warehousePath||m.warehousePath,notes:x.notes||"",runtimeOrder:r}})}
 export function capability(text:string,a:any[]=[]){const t=(text||"").toLowerCase();if(a.some(x=>String(x.mime_type||"").startsWith("audio/")))return"speech_to_text";if(a.some(x=>String(x.mime_type||"").startsWith("image/")))return"vision";if(/(generate|create|banao).*(image|photo|picture)/i.test(t))return"image_generate";if(/(generate|create|banao).*video/i.test(t))return"video_generate";if(/\b(code|python|typescript|javascript|github)\b/i.test(t))return"coding";if(/\b(chart|candlestick|price action)\b/i.test(t))return"chart_analysis";if(/\b(forecast|time series)\b/i.test(t))return"forecasting";if(/\b(sentiment|news tone)\b/i.test(t))return"financial_sentiment";if(/\b(tts|read aloud|voice reply)\b/i.test(t))return"text_to_speech";if(/\b(deep analysis|strategy|portfolio|macro|risk)\b/i.test(t))return"deep_reasoning";return"chat"}

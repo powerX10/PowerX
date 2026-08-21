@@ -1,0 +1,6 @@
+{
+  "models": 20,
+  "cms_editable": true,
+  "runtime_control": true,
+  "watchdog": true
+}
