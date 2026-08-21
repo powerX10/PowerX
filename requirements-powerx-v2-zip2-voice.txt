@@ -1,0 +1,3 @@
+# Whisper is served through transformers in the core requirements.
+kokoro>=0.9.4
+misaki>=0.9.4

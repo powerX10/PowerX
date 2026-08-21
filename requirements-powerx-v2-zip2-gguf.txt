@@ -1,0 +1,2 @@
+# Build/install this on the Lightning GPU image with CUDA support if using GGUF GPU offload.
+llama-cpp-python>=0.3.0

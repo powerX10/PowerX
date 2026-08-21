@@ -1,0 +1,12 @@
+# API/runtime
+fastapi>=0.111
+uvicorn[standard]>=0.30
+pydantic>=2.7
+httpx>=0.27
+# Real model adapters (install only on Lightning worker, not Termux API)
+transformers>=4.46
+accelerate>=0.34
+safetensors>=0.4
+sentencepiece>=0.2
+soundfile>=0.12
+numpy>=1.26

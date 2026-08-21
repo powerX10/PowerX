@@ -1,0 +1,1 @@
+PROJECTS={'powerx':{'capabilities':['chat','voice','coding','image','video','forecasting']},'zerion-x1':{'capabilities':['voice','market_analysis','trading_monitor','approval_trade']},'bilux10':{'capabilities':['live_teacher','voice','course_rag','room_session']}}
